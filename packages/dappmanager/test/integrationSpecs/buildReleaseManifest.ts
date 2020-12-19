@@ -22,7 +22,7 @@ export async function uploadManifestRelease(
     version: manifest.version,
     serviceNames: [manifest.name]
   });
-  const [imageUploadResult] = await ipfsAddFromFs(imagePath);
+  const imageUploadResult = await ipfsAddFromFs(imagePath);
 
   if (!manifest.image) throw Error("No image in manifest");
   manifest.image.hash = imageUploadResult.hash;

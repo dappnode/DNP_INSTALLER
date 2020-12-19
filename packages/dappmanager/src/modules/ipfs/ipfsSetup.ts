@@ -1,4 +1,4 @@
-const ipfsClient = require("ipfs-http-client");
+import Ipfs from "ipfs-http-client";
 import params from "../../params";
 
 export const timeoutMs = 30 * 1000;
@@ -20,7 +20,7 @@ export const TimeoutErrorKy = class TimeoutError extends Error {
  */
 const IPFS_HOST = params.IPFS_HOST;
 const ipfs = process.env.DISABLE_IPFS
-  ? {}
-  : ipfsClient(IPFS_HOST, { timeout: timeoutMs });
+  ? ({} as ReturnType<typeof Ipfs>)
+  : Ipfs({ url: IPFS_HOST, timeout: timeoutMs });
 
 export default ipfs;

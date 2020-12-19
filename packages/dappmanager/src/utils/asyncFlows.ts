@@ -111,7 +111,7 @@ export function runOnlyOneSequentially<A, R>(
   1e9);
 
   return function(arg?: A): void {
-    cargo.push({ arg });
+    cargo.push({ arg: arg! });
   };
 }
 

@@ -1,5 +1,5 @@
 diff --git a/node_modules/ethers/utils/web.js b/node_modules/ethers/utils/web.js
-index 05406b4..ad016c2 100644
+index 05406b4..4df3d53 100644
 --- a/node_modules/ethers/utils/web.js
 +++ b/node_modules/ethers/utils/web.js
 @@ -81,7 +81,9 @@ function fetchJson(connection, json, processFunc) {
@@ -7,9 +7,9 @@ index 05406b4..ad016c2 100644
                  cancelTimeout();
                  // @TODO: not any!
 -                var error = new Error('invalid response - ' + request.status);
-+                var error = request.responseText 
-+                    ? new Error(request.responseText.split("\n")[0])
-+                    : new Error('invalid response - ' + request.status);
++                                var error = request.responseText 
++                                    ? new Error(request.responseText.split("\n")[0])
++                                    : new Error('invalid response - ' + request.status);
                  error.statusCode = request.status;
                  if (request.responseText) {
                      error.responseText = request.responseText;

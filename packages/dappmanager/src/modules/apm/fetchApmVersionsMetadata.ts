@@ -20,25 +20,18 @@ export async function fetchApmVersionsMetadata(
   // Change this method if the web3 library is not ethjs
   // await ensureAncientBlocks();
 
-  const repo = new ethers.utils.Interface(repoAbi);
+  const repo = new ethers.Contract(addressOrEnsName, repoAbi, provider);
 
-  const result = await provider.getLogs({
-    address: addressOrEnsName, // or contractEnsName,
-    fromBlock: fromBlock || 0,
-    toBlock: "latest",
-    topics: [repo.events.NewVersion.topic]
-  });
+  const filter = repo.filters.NewVersion();
+  const logs = await repo.queryFilter(filter, fromBlock || 0, "latest");
 
   return await Promise.all(
-    result.map(
+    logs.map(
       async (event): Promise<ApmVersionMetadata> => {
-        // Parse values
-        const parsedLog = repo.parseLog(event);
-        if (!parsedLog || !parsedLog.values)
-          throw Error(`Error parsing NewRepo event`);
+        if (!event.args) throw Error(`Error parsing NewRepo event`);
         // const versionId = parsedLog.values.versionId.toNumber();
         return {
-          version: parsedLog.values.semanticVersion.join("."),
+          version: event.args.semanticVersion.join("."),
           // Parse tx data
           txHash: event.transactionHash,
           blockNumber: event.blockNumber,

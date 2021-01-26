@@ -54,7 +54,7 @@
     "data-uri-to-buffer": "^2.0.0",
     "deepmerge": "^2.2.1",
     "dockerode": "^2.5.8",
-    "ethers": "^4.0.38",
+    "ethers": "^5.0.2",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.5",
     "http-proxy": "^1.18.0",

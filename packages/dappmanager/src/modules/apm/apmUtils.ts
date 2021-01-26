@@ -15,9 +15,8 @@ export function parseApmVersionReturn(
     throw Error(`property 'semanticVersion' must be an array`);
   return {
     version: res.semanticVersion.join("."),
-    // Second argument = true: ignore UTF8 parsing errors
-    // Let downstream code identify the content hash as wrong
-    contentUri: ethers.utils.toUtf8String(res.contentURI, true)
+    // Should ignore UTF8 parsing errors. Let downstream code identify the bad content hash
+    contentUri: ethers.utils.toUtf8String(res.contentURI)
   };
 }
 

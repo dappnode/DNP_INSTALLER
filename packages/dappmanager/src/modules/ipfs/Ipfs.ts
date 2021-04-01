@@ -1,4 +1,8 @@
-const ipfsClient = require("ipfs-http-client");
+import createClient from "ipfs-http-client";
+
+const ipfs = createClient.create();
+ipfs.add({ a: 1 });
+
 import { logs } from "../../logs";
 import { CatStreamToFsArgs, catStreamToFs } from "./catStreamToFs";
 import { IpfsCatOptions, IpfsLsFileResult } from "./types";

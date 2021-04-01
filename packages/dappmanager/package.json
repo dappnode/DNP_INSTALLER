@@ -65,7 +65,7 @@
     "express-fileupload": "^1.1.5",
     "helmet": "^4.4.1",
     "http-proxy": "^1.18.0",
-    "ipfs-http-client": "^44.0.1",
+    "ipfs-http-client": "49.0.5-rc.3",
     "is-ip": "^3.0.0",
     "is-ipfs": "^1.0.3",
     "it-to-stream": "^0.1.1",

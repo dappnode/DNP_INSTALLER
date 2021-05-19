@@ -26,6 +26,7 @@ import { shellHost } from "./utils/shell";
 import { startDappmanager } from "./startDappmanager";
 import { addAliasToRunningContainersMigration } from "./modules/https-portal";
 import { copyHostServices } from "./modules/hostServices/copyHostServices";
+import { logsMigration } from "./modules/logs";
 
 const controller = new AbortController();
 
@@ -100,14 +101,22 @@ migrateUserActionLogs().catch(e =>
 
 runLegacyActions().catch(e => logs.error("Error running legacy actions", e));
 
+/**
+ * Migrations:
+ * - Alias and network migration
+ * - logs path migrations
+ */
+
 addAliasToRunningContainersMigration().catch(e =>
   logs.error("Error adding alias to running containers", e)
 );
 
+logsMigration().catch(e => logs.error("Error migrating logs files on host", e));
+
 /**
  * Run initial opts
  * - Copy host scripts
- * -
+ * - Copy host services
  */
 
 copyHostScripts().catch(e => logs.error("Error copying host scripts", e));

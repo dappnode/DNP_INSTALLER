@@ -201,6 +201,7 @@ const params = {
   HOSTNAME_PATH: "/etc/dappnodename",
   STATIC_IP_PATH: "/usr/src/app/config/static_ip",
   VPNDB_PATH: "/usr/src/app/secrets/vpndb.json",
+  LOGS_PATH: "/usr/src/dappnode/logs",
 
   // Wi-Fi ENVs
   WIFI_KEY_SSID: "SSID",

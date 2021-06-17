@@ -79,7 +79,7 @@
     "node-os-utils": "^1.2.2",
     "node-telegram-bot-api": "^0.50.0",
     "semver": "^5.5.0",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.4.0",
     "source-map-support": "^0.5.19",
     "stack-trace": "^0.0.10",
     "strip-ansi": "^6.0.0",

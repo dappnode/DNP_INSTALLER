@@ -15,7 +15,8 @@ import { logs } from "../../logs";
 import { EthClientTarget } from "../../types";
 import {
   EthProviderError,
-  getLocalFallbackContentHash
+  getLocalFallbackContentHash,
+  setDefaultEthClientFullNode
 } from "../../modules/ethClient";
 
 /**
@@ -150,7 +151,10 @@ export function startEthMultiClientDaemon(signal: AbortSignal): void {
         if (next.status === "INSTALLED") {
           // If status switched to "INSTALLED", map to fullnode.dappnode
           // Must be done here in case the package is already installed
+          // 1. Domain for BIND package
           db.fullnodeDomainTarget.set(ethClientData[target].dnpName);
+          // 2. Add network alias for docker DNS
+          await setDefaultEthClientFullNode(ethClientData[target].dnpName);
         }
       }
     } catch (e) {

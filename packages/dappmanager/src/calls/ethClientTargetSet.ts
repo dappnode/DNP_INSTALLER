@@ -7,14 +7,14 @@ import { EthClientTarget } from "../types";
  */
 export async function ethClientTargetSet({
   target,
-  deleteVolumes
+  deletePrevEthClient
 }: {
   target: EthClientTarget;
-  deleteVolumes?: boolean;
+  deletePrevEthClient?: boolean;
 }): Promise<void> {
   if (!target) throw Error(`Argument target must be defined`);
   if (!ethClientTargets.includes(target))
     throw Error(`Unknown client target: ${target}`);
 
-  await changeEthMultiClient(target, deleteVolumes);
+  await changeEthMultiClient(target, deletePrevEthClient);
 }

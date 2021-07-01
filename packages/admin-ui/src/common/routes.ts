@@ -195,11 +195,6 @@ export interface Routes {
   dockerEngineUpdateCheck: () => Promise<DockerUpdateStatus>;
 
   /**
-   * Set a domain alias to a DAppNode package by name
-   */
-  domainAliasSet: (kwargs: { alias: string; dnpName: string }) => Promise<void>;
-
-  /**
    * Sets if a fallback should be used
    */
   ethClientFallbackSet: (kwargs: {
@@ -211,7 +206,7 @@ export interface Routes {
    */
   ethClientTargetSet: (kwargs: {
     target: EthClientTarget;
-    deleteVolumes?: boolean;
+    deletePrevEthClient?: boolean;
   }) => Promise<void>;
 
   /**
@@ -615,7 +610,6 @@ export const routesData: { [P in keyof Routes]: RouteData } = {
   dockerComposeUpdateCheck: {},
   dockerEngineUpdate: { log: true },
   dockerEngineUpdateCheck: {},
-  domainAliasSet: { log: true },
   ethClientFallbackSet: { log: true },
   ethClientTargetSet: { log: true },
   fetchCoreUpdateData: {},

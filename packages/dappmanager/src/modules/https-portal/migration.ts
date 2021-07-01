@@ -83,7 +83,7 @@ export function hasAlias(
 }
 
 /** Get endpoint config for DNP_PRIVATE_NETWORK_NAME */
-async function getEndpointConfig(
+export async function getEndpointConfig(
   containerName: string
 ): Promise<Dockerode.NetworkInfo | null> {
   const inspectInfo = await dockerContainerInspect(containerName);

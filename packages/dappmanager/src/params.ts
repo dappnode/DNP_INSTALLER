@@ -234,6 +234,8 @@ const params = {
     "geth.dnp.dappnode.eth",
     "parity.dnp.dappnode.eth"
   ],
+  // Default fullnode alias
+  FULLNODE_ALIAS: "fullnode.dappnode",
 
   // ETHFORWARD / HTTP proxy params
   ETHFORWARD_IPFS_REDIRECT: "http://ipfs.dappnode:8080",

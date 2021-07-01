@@ -21,21 +21,21 @@ export const changeEthClientTarget = (
   if (nextTarget === prevTarget) return;
 
   // If the previous target is package, ask the user if deleteVolumes
-  const deleteVolumes =
+  const deletePrevEthClient =
     prevTarget && prevTarget !== "remote"
-      ? await new Promise((resolve: (_deleteVolumes: boolean) => void) =>
+      ? await new Promise<boolean>(resolve =>
           confirm({
-            title: `Remove ${getEthClientPrettyName(prevTarget)} volumes?`,
-            text: `Do you want to keep or remove the volumes of your current Ethereum client? This action cannot be undone.`,
+            title: `Remove ${getEthClientPrettyName(prevTarget)}?`,
+            text: `Do you want to keep or remove your current Ethereum client? This action cannot be undone. Having more than one ETH client may cause your machine unexpedted behaviours`,
             buttons: [
               {
                 label: "Keep",
-                variant: "dappnode",
+                variant: "danger",
                 onClick: () => resolve(false)
               },
               {
                 label: "Remove",
-                variant: "danger",
+                variant: "dappnode",
                 onClick: () => resolve(true)
               }
             ]
@@ -44,7 +44,7 @@ export const changeEthClientTarget = (
       : false;
 
   await withToastNoThrow(
-    () => api.ethClientTargetSet({ target: nextTarget, deleteVolumes }),
+    () => api.ethClientTargetSet({ target: nextTarget, deletePrevEthClient }),
     {
       message: "Changing Eth client...",
       onSuccess: `Changed Eth client`

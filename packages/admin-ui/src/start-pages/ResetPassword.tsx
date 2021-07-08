@@ -9,6 +9,7 @@ import { ReqStatus } from "types";
 import { InputForm } from "components/InputForm";
 import Ok from "components/Ok";
 import { docsUrl } from "params";
+import LinkDocs from "components/LinkDocs";
 
 export function ResetPassword({
   onSuccessfulReset
@@ -40,9 +41,9 @@ export function ResetPassword({
         machine via SSH or by connecting a keyboard and screen and follow this
         guide
         <br />
-        <a href={docsUrl.recoverPasswordGuide}>
-          Reset your DAppNode admin password TODO
-        </a>
+        <LinkDocs href={docsUrl.recoverPasswordGuide}>
+          Reset your DAppNode admin password
+        </LinkDocs>
       </Alert>
 
       <InputForm

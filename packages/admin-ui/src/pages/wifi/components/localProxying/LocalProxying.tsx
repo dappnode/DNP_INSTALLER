@@ -17,6 +17,7 @@ import { StateBadge } from "pages/packages/components/StateBadge";
 import { MdWifi } from "react-icons/md";
 import { parseContainerState } from "pages/packages/components/StateBadge/utils";
 import { LocalProxyingStatus } from "common";
+import LinkDocs from "components/LinkDocs";
 
 export function LocalProxying(): JSX.Element {
   const [reqStatus, setReqStatus] = useState<ReqStatus>({});
@@ -68,7 +69,9 @@ export function LocalProxying(): JSX.Element {
             If you are connected to the same router as your DAppNode you can use
             this page at <a href={adminUiLocalDomain}>{adminUiLocalDomain}</a>.
             Learn more about the Local Network Proxy at:{" "}
-            <a href={docsUrl.connectLocalProxy}>{docsUrl.connectLocalProxy}</a>
+            <LinkDocs href={docsUrl.connectLocalProxy}>
+              How to connect do DAppNode Local Network
+            </LinkDocs>
           </p>
           {dappnodeIdentity.internalIp === dappnodeIdentity.ip && (
             <p>

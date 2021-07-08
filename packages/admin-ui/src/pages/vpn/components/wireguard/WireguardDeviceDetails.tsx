@@ -20,7 +20,6 @@ import { FaQrcode } from "react-icons/fa";
 import { WireguardDeviceCredentials } from "types";
 // Utils
 import { urlJoin } from "utils/url";
-import { docsUrl } from "params";
 
 function WireguardDeviceDetailsLoaded({
   id,
@@ -50,8 +49,7 @@ function WireguardDeviceDetailsLoaded({
       </header>
 
       <div className="help-text">
-        Add the following VPN configuration in your Wireguard client. (
-        <a href={docsUrl.connectVpn}>What is Wireguard</a>?)
+        Add the following VPN configuration in your Wireguard client.
         <br /> <br />
         In case you experience issues connecting from the same network as your
         dappnode, use the local credentials.{" "}

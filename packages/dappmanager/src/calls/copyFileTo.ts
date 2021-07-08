@@ -43,7 +43,7 @@ export async function copyFileTo({
   if (!dataUri) throw Error("Argument dataUri must be defined");
   if (!filename) throw Error("Argument filename must be defined");
   // toPath is allowed to be empty, it will default to WORKDIR
-  // if (!toPath) throw Error("Argument toPath must be defined");
+  // if (!toPath) throw Error("Argument toPath must be defined")
   if (filename.includes("/"))
     throw Error(`filename must not be a path: ${filename}`);
 

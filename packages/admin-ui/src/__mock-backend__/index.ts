@@ -71,6 +71,8 @@ export const otherCalls: Omit<Routes, keyof typeof namedSpacedCalls> = {
     publicIp: "85.84.83.82"
   }),
 
+  packageSentDataDelete: async () => {},
+
   portsToOpenGet: async () => [
     {
       portNumber: 8092,

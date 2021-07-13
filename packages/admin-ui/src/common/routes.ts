@@ -393,6 +393,12 @@ export interface Routes {
     volumeId?: string;
   }) => Promise<void>;
 
+  /** Delete package sent data key */
+  packageSentDataDelete: (kwargs: {
+    dnpName: string;
+    key?: string;
+  }) => Promise<void>;
+
   /**
    * Updates the .env file of a package. If requested, also re-ups it
    */
@@ -643,6 +649,7 @@ export const routesData: { [P in keyof Routes]: RouteData } = {
   packageRemove: { log: true },
   packageRestart: { log: true },
   packageRestartVolumes: { log: true },
+  packageSentDataDelete: { log: true },
   packageSetEnvironment: { log: true },
   packageSetPortMappings: { log: true },
   packageStartStop: { log: true },

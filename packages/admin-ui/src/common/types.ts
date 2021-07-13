@@ -563,6 +563,8 @@ export interface InstalledPackageDetailData extends InstalledPackageData {
   notRemovable: boolean;
   // Non-indexed data
   manifest?: Manifest;
+  /** Arbitrary data sent by the package */
+  packageSentData: Record<string, string>;
 }
 
 export interface PackageEnvs {

@@ -33,7 +33,7 @@ const subscriptionsLogger: LoggerMiddleware = {
   onError: (route, error) => console.log("Subscription error", route, error)
 };
 
-const server = startDappmanager({
+startDappmanager({
   params,
   logs: {
     debug: console.log,
@@ -43,6 +43,7 @@ const server = startDappmanager({
   },
   routes: {
     containerLogs: () => {},
+    dataSend: () => {},
     download: () => {},
     downloadWireguardConfig: () => {},
     downloadUserActionLogs: () => {},

@@ -5,6 +5,7 @@ import InputFieldSelect from "./InputFieldSelect";
 import InputFieldFile from "./InputFieldFile";
 import SelectMountpoint from "./SelectMountpoint";
 import { InputSecret } from "components/InputSecret";
+import { isSecret } from "utils/isSecret";
 
 export default function InputField({
   field,
@@ -28,7 +29,7 @@ export default function InputField({
           onValueChange={onValueChange}
         />
       );
-    else if (isSecret(field))
+    else if (isSecretField(field))
       return <InputSecret value={value} onValueChange={onValueChange} />;
     else return <Input value={value} onValueChange={onValueChange} />;
   } else if (field.target.type === "fileUpload") {
@@ -50,15 +51,15 @@ export default function InputField({
   }
 }
 
-function isSecret(field: SetupWizardField): boolean {
-  const secretRegex = /(secret|passphrase|password)/i;
-  if (typeof field.secret === "boolean") return field.secret;
+function isSecretField(field: SetupWizardField): boolean {
+  if (field.secret !== undefined) return field.secret;
+
   return (
-    secretRegex.test(field.id) ||
+    isSecret(field.id) ||
     Boolean(
       field.target &&
         field.target.type === "environment" &&
-        secretRegex.test(field.target.name)
+        isSecret(field.target.name)
     )
   );
 }

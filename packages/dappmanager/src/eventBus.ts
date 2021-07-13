@@ -38,8 +38,8 @@ const eventBusData: { [P in keyof EventTypes]: {} } = {
   notification: {},
   packages: {},
   packagesModified: {},
-  telegramStatusChanged: {},
   // Events without arguments
+  telegramStatusChanged: {},
   initializedDb: {},
   requestAutoUpdateData: {},
   requestChainData: {},

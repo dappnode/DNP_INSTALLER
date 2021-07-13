@@ -14,7 +14,7 @@ export const InputSecret: typeof Input = props => {
           <>
             <Button
               onClick={() => setShow(x => !x)}
-              className="input-field-secret-toggle"
+              className="input-append-button"
             >
               {show ? <GoEyeClosed /> : <GoEye />}
             </Button>

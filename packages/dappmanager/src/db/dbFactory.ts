@@ -51,28 +51,28 @@ export function dbFactory(dbPath: string) {
    * @param validate Must return a boolean (valid or not) given an item
    */
   /* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */
-  function indexedByKey<T, K>({
+  function indexedByKey<V, K>({
     rootKey,
     getKey,
     validate
   }: {
     rootKey: string;
     getKey: (keyArg: K) => string;
-    validate?: (keyArg: K, value?: T) => boolean;
+    validate?: (keyArg: K, value?: V) => boolean;
   }) {
-    const getRoot = (): { [key: string]: T } =>
+    const getRoot = (): { [key: string]: V } =>
       jsonFileDb.read()[rootKey] || {};
 
     return {
       getAll: getRoot,
 
-      get: (keyArg: K): T | undefined => {
+      get: (keyArg: K): V | undefined => {
         const value = getRoot()[getKey(keyArg)];
         if (validate && !validate(keyArg, value)) return undefined;
         return value;
       },
 
-      set: (keyArg: K, newValue: T): void => {
+      set: (keyArg: K, newValue: V): void => {
         const all = jsonFileDb.read();
         const root = all[rootKey] || {};
         root[getKey(keyArg)] = newValue;

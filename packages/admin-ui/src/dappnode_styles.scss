@@ -133,15 +133,6 @@ p.no-p-style:last-child {
   grid-gap: var(--grid-spacing);
   place-items: center;
 
-  > header {
-    color: var(--light-text-color);
-    text-transform: capitalize;
-    /* When the screen is really small, hide the name of the actions */
-    white-space: nowrap;
-    overflow: hidden;
-    width: 100%;
-    font-size: 0.9rem;
-  }
   > *:not(header) {
     align-items: center;
   }
@@ -192,6 +183,17 @@ p.no-p-style:last-child {
   a {
     display: flex;
   }
+}
+
+.list-grid > header,
+.list-grid-header {
+  color: var(--light-text-color);
+  text-transform: capitalize;
+  /* When the screen is really small, hide the name of the actions */
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  font-size: 0.9rem;
 }
 
 /* Generic centered container */
@@ -252,5 +254,15 @@ p.no-p-style:last-child {
   text-transform: uppercase;
   .capitalize {
     text-transform: capitalize;
+  }
+}
+
+/* For appended buttons to Bootstrap InputGroups */
+.input-append-button {
+  display: flex !important;
+  font-size: 20px !important;
+  border-color: #ced4da !important;
+  svg {
+    opacity: 0.7;
   }
 }

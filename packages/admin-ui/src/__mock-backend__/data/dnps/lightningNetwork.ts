@@ -165,6 +165,10 @@ Content in the first column | Content in the second column
     updateAvailable: {
       newVersion: "0.1.1",
       upstreamVersion: "0.7.0-beta"
+    },
+    packageSentData: {
+      apiKey: "AAXXAAXXAAXXAAXXAAXXAAXXAAXXAAXXAAXXAAXX",
+      secretKey: "ZZXXZZXXZZXXZZXXZZXXZZXXZZXXZZXXZZXXZZXX"
     }
   },
   installedContainers: {

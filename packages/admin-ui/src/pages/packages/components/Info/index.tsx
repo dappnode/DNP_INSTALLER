@@ -10,10 +10,11 @@ import { Links } from "./Links";
 import newTabProps from "utils/newTabProps";
 import { InstalledPackageDetailData, Manifest } from "types";
 import { ipfsGatewayUrl } from "pages/system/data";
-import "./info.scss";
 import { RemovePackage } from "./RemovePackage";
 import { VolumesList } from "./VolumesList";
 import { ContainerList } from "./ContainerList";
+import { RenderPackageSentData } from "./PackageSentData";
+import "./info.scss";
 
 export function Info({
   dnp,
@@ -110,6 +111,11 @@ export function Info({
             <Links links={links || ((manifest as any) || {}).homepage || {}} />
           </div>
         </div>
+
+        <RenderPackageSentData
+          dnpName={dnp.dnpName}
+          data={dnp.packageSentData}
+        />
 
         <ContainerList dnp={dnp} />
 

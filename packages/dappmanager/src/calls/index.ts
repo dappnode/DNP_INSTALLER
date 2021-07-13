@@ -33,6 +33,7 @@ export { packageLog } from "./packageLog";
 export { packageRemove } from "./packageRemove";
 export { packageRestart } from "./packageRestart";
 export { packageRestartVolumes } from "./packageRestartVolumes";
+export { packageSentDataDelete } from "./packageSentDataDelete";
 export { packageSetEnvironment } from "./packageSetEnvironment";
 export { packageSetPortMappings } from "./packageSetPortMappings";
 export { packageStartStop } from "./packageStartStop";

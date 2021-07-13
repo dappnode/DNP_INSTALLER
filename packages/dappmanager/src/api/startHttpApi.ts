@@ -34,6 +34,7 @@ export interface HttpApiParams
 
 export interface HttpRoutes {
   containerLogs: RequestHandler<{ containerName: string }>;
+  dataSend: RequestHandler<{}>;
   download: RequestHandler<{ fileId: string }>;
   downloadUserActionLogs: RequestHandler<{}>;
   downloadWireguardConfig: RequestHandler<{ device: string }>;
@@ -160,6 +161,7 @@ export function startHttpApi({
   app.get("/public-packages/:containerName?", routes.publicPackagesData);
   app.get("/package-manifest/:dnpName", routes.packageManifest);
   app.post("/sign", routes.sign);
+  app.post("/data-send", routes.dataSend);
 
   // Rest of RPC methods
   app.post(

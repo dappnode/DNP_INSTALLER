@@ -1,0 +1,24 @@
+.package-sent-data {
+  align-items: center;
+  display: grid;
+  grid-template-columns: minmax(min-content, max-content) minmax(
+      min-content,
+      auto
+    );
+  grid-gap: 0.5rem 1rem;
+
+  .copiable-input {
+    background-color: var(--color-background) !important;
+  }
+
+  .grid-footer {
+    grid-column: 1/-1;
+  }
+
+  .delete-all {
+    grid-column: 1/-1;
+    color: var(--light-text-color);
+    font-size: 90%;
+    cursor: pointer;
+  }
+}

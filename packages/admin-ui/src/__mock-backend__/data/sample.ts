@@ -81,5 +81,6 @@ export const sampleDnp: InstalledPackageDetailData = {
   dependantsOf: [],
   updateAvailable: null,
   notRemovable: false,
-  containers: []
+  containers: [],
+  packageSentData: {}
 };

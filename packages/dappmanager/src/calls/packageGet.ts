@@ -50,7 +50,9 @@ export async function packageGet({
       .map(d => d.dnpName),
 
     notRemovable:
-      dnp.isCore && params.corePackagesNotRemovable.includes(dnp.dnpName)
+      dnp.isCore && params.corePackagesNotRemovable.includes(dnp.dnpName),
+
+    packageSentData: db.packageSentData.get(dnp.dnpName) ?? {}
   };
 
   // Add non-blocking data

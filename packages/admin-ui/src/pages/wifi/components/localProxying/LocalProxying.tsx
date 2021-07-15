@@ -7,19 +7,22 @@ import { ReqStatus } from "types";
 // Own components
 import { confirm } from "components/ConfirmDialog";
 import { withToast } from "components/toast/Toast";
+import { rootPath as installedRootPath } from "pages/installer";
 import ErrorView from "components/ErrorView";
 import Loading from "components/Loading";
 import Card from "components/Card";
 import Switch from "components/Switch";
 import { getDappnodeIdentityClean } from "services/dappnodeStatus/selectors";
-import { adminUiLocalDomain, docsUrl } from "params";
+import { adminUiLocalDomain, docsUrl, httpsPortalDnpName } from "params";
 import { StateBadge } from "pages/packages/components/StateBadge";
 import { MdWifi } from "react-icons/md";
 import { parseContainerState } from "pages/packages/components/StateBadge/utils";
+import Alert from "react-bootstrap/esm/Alert";
 import { LocalProxyingStatus } from "common";
+import { NavLink } from "react-router-dom";
 import LinkDocs from "components/LinkDocs";
 
-export function LocalProxying(): JSX.Element {
+export function LocalProxying() {
   const [reqStatus, setReqStatus] = useState<ReqStatus>({});
   const localProxyingStatus = useApi.localProxyingStatusGet();
   const dappnodeIdentity = useSelector(getDappnodeIdentityClean);
@@ -59,6 +62,19 @@ export function LocalProxying(): JSX.Element {
       setReqStatus({ error: e });
       console.error("Error on start/stop Local Network Proxy", e);
     }
+  }
+
+  if (localProxyingStatus.data === "https missing") {
+    const url = `${installedRootPath}/${httpsPortalDnpName}`;
+    return (
+      <Alert variant="secondary">
+        You must <NavLink to={url}>install the HTTPs Portal</NavLink> to use
+        this feature.{" "}
+        <LinkDocs href={docsUrl.connectLocalProxy}>
+          Learn more about Local Network
+        </LinkDocs>
+      </Alert>
+    );
   }
 
   return (
@@ -112,8 +128,8 @@ export function LocalProxying(): JSX.Element {
   );
 }
 
-export function parseAvahiPublishCmdState(
-  state: LocalProxyingStatus
+function parseAvahiPublishCmdState(
+  state: Exclude<LocalProxyingStatus, "https missing">
 ): ReturnType<typeof parseContainerState> {
   switch (state) {
     case "running":

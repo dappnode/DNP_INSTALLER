@@ -7,6 +7,7 @@ import {
 import params from "../params";
 import { AvahiDaemonStatus, LocalProxyingStatus } from "../types";
 import { packageSetEnvironment } from "./packageSetEnvironment";
+import { listPackageNoThrow } from "../modules/docker/list";
 
 /**
  * Local proxying allows to access the admin UI through dappnode.local.
@@ -53,6 +54,14 @@ export async function localProxyingEnableDisable(
  * - Is broadcasting to mDNS
  */
 export async function localProxyingStatusGet(): Promise<LocalProxyingStatus> {
+  const isHttpsPresent = (await listPackageNoThrow({
+    dnpName: params.HTTPS_PORTAL_DNPNAME
+  }))
+    ? true
+    : false;
+
+  if (!isHttpsPresent) return "https missing";
+
   const userSettings = ComposeFileEditor.getUserSettingsIfExist(
     params.HTTPS_PORTAL_DNPNAME,
     params.HTTPS_PORTAL_ISCORE

@@ -1,6 +1,6 @@
 import "mocha";
 import { expect } from "chai";
-import parseCloseOutput from "../../../src/modules/upnpc/parseCloseOutput";
+import { parseCloseOutput } from "../../../src/modules/upnpc/close";
 
 describe("upnpn: parseCloseOutput", () => {
   const terminalOutputSuccess = `upnpc : miniupnpc library test client, version 2.0.
@@ -31,15 +31,5 @@ UPNP_DeletePortMapping() failed with code : 714`;
   it("On success, it should return ok", async () => {
     const ok = parseCloseOutput(terminalOutputSuccess);
     expect(ok).to.be.ok;
-  });
-
-  it("On error, it should return error", () => {
-    let error;
-    try {
-      parseCloseOutput(terminalOutputErrorNoPort);
-    } catch (e) {
-      error = e.message;
-    }
-    expect(error).to.equal("Error closing port: failed with code : 714");
   });
 });

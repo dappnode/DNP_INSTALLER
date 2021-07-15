@@ -1,6 +1,6 @@
 import "mocha";
 import { expect } from "chai";
-import parseListOutput from "../../../src/modules/upnpc/parseListOutput";
+import { parseListOutput } from "../../../src/modules/upnpc/list";
 
 describe("upnpn: parseListOutput", () => {
   const terminalOutputSuccess = `upnpc : miniupnpc library test client, version 2.0.

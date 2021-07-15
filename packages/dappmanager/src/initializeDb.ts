@@ -16,6 +16,7 @@ import shell from "./utils/shell";
 import { IdentityInterface } from "./types";
 import { logs } from "./logs";
 import { localProxyingEnableDisable } from "./calls";
+import { isUpnpAvailable } from "./modules/upnpc/isUpnpAvailable";
 
 // Wrap async getter so they do NOT throw, but return null and log the error
 const getInternalIpSafe = returnNullIfError(getInternalIp);
@@ -70,9 +71,11 @@ export default async function initializeDb(): Promise<void> {
   //   This boolean will trigger the VPN nodejs process to try to open the ports with UPnP
   //   UPnP is available and necessary only if the internalIp is not equal to the public IP
   //   and the external IP from UPnP command succeeded
-  const upnpAvailable = publicIp
-    ? Boolean(externalIp && internalIp !== publicIp)
-    : false;
+  const upnpAvailable =
+    Boolean(publicIp && externalIp && internalIp !== publicIp) &&
+    (await isUpnpAvailable())
+      ? true
+      : false;
 
   // >
   const doubleNat = publicIp
